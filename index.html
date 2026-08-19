@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>किशोर कुमार — सदाबहार नग़मे</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Yatra+One&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans Devanagari',sans-serif;background:#17110d;color:#f8e8bd;line-height:1.6}
+header{position:fixed;top:0;width:100%;z-index:20;background:rgba(20,13,9,.94);border-bottom:1px solid #8d672b}
+nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:16px 22px}
+.logo{font-family:'Yatra One',cursive;font-size:24px;color:#e5b85c}
+nav a{color:#f8e8bd;text-decoration:none;margin-left:22px;font-size:14px}
+.hero{min-height:100vh;padding:150px 8% 70px;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at center,#5a3821 0,#2b1a11 38%,#110c09 80%)}
+.hero-inner{max-width:900px}
+.badge{display:inline-block;border:1px solid #c99943;padding:6px 18px;border-radius:30px;color:#e5b85c;margin-bottom:22px}
+h1{font-family:'Yatra One',cursive;font-size:clamp(45px,8vw,92px);color:#f0c86b;line-height:1.05;text-shadow:0 4px 25px #000}
+.hero p{font-size:21px;margin:22px auto;color:#ead7b1}
+.btn{display:inline-block;padding:13px 28px;background:#c69235;color:#1c1008;text-decoration:none;border-radius:5px;font-weight:700;margin:8px;border:0;cursor:pointer}
+.btn.alt{background:transparent;color:#e5b85c;border:1px solid #c69235}
+section{padding:85px 7%;max-width:1200px;margin:auto}
+.title{text-align:center;font-family:'Yatra One';font-size:38px;color:#e5b85c;margin-bottom:42px}
+.player{background:#24170f;border:1px solid #765325;border-radius:18px;padding:30px;display:grid;grid-template-columns:150px 1fr;gap:30px;align-items:center;box-shadow:0 15px 50px #0008}
+.vinyl{width:150px;height:150px;border-radius:50%;background:repeating-radial-gradient(circle,#111 0 4px,#292929 5px 7px);border:8px solid #0c0c0c;position:relative;animation:spin 6s linear infinite paused}
+.vinyl.playing{animation-play-state:running}
+.vinyl:after{content:'';position:absolute;width:35px;height:35px;border-radius:50%;background:#c69235;top:50%;left:50%;transform:translate(-50%,-50%);border:8px solid #111}
+@keyframes spin{to{transform:rotate(360deg)}}
+.song{font-size:25px;color:#f2c96c;font-weight:700}
+.artist{color:#cbb894;margin-bottom:18px}
+.controls{display:flex;align-items:center;gap:12px}
+.control{width:44px;height:44px;border-radius:50%;border:1px solid #b58235;background:#17100b;color:#f0c86b;cursor:pointer;font-size:17px}
+.progress{width:100%;accent-color:#c69235}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#24170f;border:1px solid #60451f;padding:22px;border-radius:12px;transition:.25s}
+.card:hover{transform:translateY(-5px);border-color:#c69235}
+.card h3{color:#e9c36c;margin-bottom:7px}
+.card p{color:#c8b99d;font-size:14px}
+.playcard{margin-top:14px;color:#dcae51;background:none;border:0;cursor:pointer}
+.about{background:#21150e;border-top:1px solid #49341b;border-bottom:1px solid #49341b}
+.quote{text-align:center;font-family:'Yatra One';font-size:30px;color:#edc56b;max-width:850px;margin:auto}
+footer{text-align:center;padding:35px 20px;background:#0d0907;color:#9d8a6b}
+.small{font-size:13px;margin-top:8px}
+@media(max-width:700px){nav a{display:none}.player{grid-template-columns:1fr;text-align:center}.vinyl{margin:auto}.controls{justify-content:center}.song{font-size:20px}}
+</style>
+</head>
+<body>
+<header><nav><div class="logo">किशोर कुमार 🎙</div><div><a href="#songs">गाने</a><a href="#about">परिचय</a><a href="#radio">रेडियो</a></div></nav></header>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="badge">RETRO HINDI • EVERGREEN VOICE</div>
+<h1>सदाबहार नग़मे</h1>
+<p>कुछ आवाज़ें कभी पुरानी नहीं होतीं…<br>किशोर कुमार के सुनहरे गीतों की दुनिया में आपका स्वागत है।</p>
+<a class="btn" href="#radio">▶ अभी सुनें</a>
+<a class="btn alt" href="#songs">गीत संग्रह</a>
+</div>
+</section>
+
+<section id="radio">
+<h2 class="title">📻 Retro Radio</h2>
+<div class="player">
+<div class="vinyl" id="vinyl"></div>
+<div>
+<div class="song" id="songTitle">Mere Samne Wali Khidki Mein</div>
+<div class="artist">किशोर कुमार • पुरानी यादें</div>
+<input class="progress" id="progress" type="range" min="0" max="100" value="0">
+<div class="controls">
+<button class="control" onclick="prev()">◀</button>
+<button class="control" id="play" onclick="toggle()">▶</button>
+<button class="control" onclick="next()">▶</button>
+</div>
+</div>
+</div>
+<p class="small">नोट: यह demo player UI है। अपने MP3 files को <b>songs/</b> folder में जोड़कर JavaScript में file paths सेट करें।</p>
+</section>
+
+<section id="songs">
+<h2 class="title">🎵 लोकप्रिय गीत</h2>
+<div class="grid" id="songGrid"></div>
+</section>
+
+<section class="about" id="about">
+<h2 class="title">किशोर कुमार</h2>
+<p class="quote">“एक ऐसी आवाज़, जिसने प्यार, खुशी, दर्द और जिंदगी—हर एहसास को गीत बना दिया।”</p>
+<div style="max-width:850px;margin:28px auto;color:#cdbd9e;text-align:center">
+किशोर कुमार भारतीय सिनेमा के सबसे यादगार गायकों और कलाकारों में से एक थे। उनके गीत आज भी कई पीढ़ियों की यादों का हिस्सा हैं। यह वेबसाइट उनके पुराने हिंदी गीतों और रेट्रो संगीत की भावना को समर्पित है।
+</div>
+</section>
+
+<section>
+<h2 class="title">🕰️ सुनहरे दौर</h2>
+<div class="grid">
+<div class="card"><h3>1960s</h3><p>किशोर दा के शुरुआती और यादगार गीतों का दौर।</p></div>
+<div class="card"><h3>1970s</h3><p>रोमांस, दोस्ती और जिंदगी के सुपरहिट गीत।</p></div>
+<div class="card"><h3>1980s</h3><p>भावनात्मक और सदाबहार गीतों की खूबसूरत विरासत।</p></div>
+</div>
+</section>
+
+<footer>© 2026 Kishore Kumar – सदाबहार नग़मे<div class="small">Made with ❤️ for Retro Hindi Music</div></footer>
+
+<script>
+const songs=[
+"Mere Samne Wali Khidki Mein","Roop Tera Mastana","Pal Pal Dil Ke Paas",
+"Zindagi Ek Safar Hai Suhana","O Mere Dil Ke Chain","Chookar Mere Man Ko",
+"Musafir Hoon Yaaron","Khaike Paan Banaraswala"
+];
+let index=0, playing=false;
+const title=document.getElementById('songTitle'), vinyl=document.getElementById('vinyl'), play=document.getElementById('play');
+function render(){document.getElementById('songGrid').innerHTML=songs.map((s,i)=>`<div class="card"><h3>${s}</h3><p>किशोर कुमार • Evergreen Hindi Song</p><button class="playcard" onclick="selectSong(${i})">▶ Play</button></div>`).join('')}
+function selectSong(i){index=i;title.textContent=songs[index];playing=true;vinyl.classList.add('playing');play.textContent='❚❚'}
+function toggle(){playing=!playing;vinyl.classList.toggle('playing',playing);play.textContent=playing?'❚❚':'▶'}
+function next(){index=(index+1)%songs.length;selectSong(index)}
+function prev(){index=(index-1+songs.length)%songs.length;selectSong(index)}
+render();
+</script>
+</body>
+</html>
